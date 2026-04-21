@@ -121,6 +121,11 @@ $sel writepdb system.solv.ionized-heavy-res-2kcal.pdb
 #   and exit VMD
 quit
 ```
+## For running the script:
+```
+# on the cluster, just need vmd sourced
+vmd -dispdev text -e v-prepare_bulk.tcl
+```
 ## Typical workflow for QM/MM MD simulations:  
 1. Minimization - 10,000 steps
 2. Annealing - protocol
