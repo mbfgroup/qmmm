@@ -22,8 +22,9 @@ This is intended to be a tutorial for how to system build + launch QM/MM MD simu
 ## Preparing the system  
 There is an automated version of this at 'v-prep_qm_bulk.tcl', but this is an explanation of everything that the script goes through:  
 
-Starting from an MD trajectory:  
-`#   dump frame from a trajectory and export as a pdb:
+Starting from an MD trajectory: 
+```
+#   dump frame from a trajectory and export as a pdb:
 mol new ../system.solv.ionized.psf type {psf}
 mol addfile ../ABV_202603_0041.dcd type dcd first 0 last -1 step 1 waitfor all
 #   get the total number of frames
@@ -32,4 +33,5 @@ puts "total number of frames: $numframes"
 #   set ASL for which frame you want to dump from/launch QMMMM trajectory from
 set qmmmAtoms [atomselect top all frame 1000]
 #   write to a pdb file
-$qmmmAtoms writepdb ABV_202603_0041_1000.pdb`  
+$qmmmAtoms writepdb ABV_202603_0041_1000.pdb  
+```  
