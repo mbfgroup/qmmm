@@ -14,13 +14,13 @@ This is intended to be a tutorial for how to system build + launch QM/MM MD simu
 --> system.coor # optional, if you're going from restart files this is a binary coordinate file you can use instead of system.pdb  
 --> ALL topology/forcefield files previously generated # for protein, ligand, etc.  
   
-## Scripts that help automate the process:  
+## Scripts that help automate the process (found in ./prep):  
 --> v-prepare_qm.tcl  
 --> v-prepare_qm_res.tcl  
 --> v-prep_qm_bulk.tcl  <-- this is sort of the mother script that contains a lot of separate steps in one thing.
 
 ## Preparing the files you need to build the system  
-There is an automated version of this at 'v-prep_qm_bulk.tcl', but this is an explanation of everything that the script goes through:  
+There is an automated version of this at 'prep/v-prep_qm_bulk.tcl', but this is an explanation of everything that the script goes through:  
 
 Starting from an MD trajectory: 
 ```
@@ -127,3 +127,6 @@ quit
 3. Restrained equilibration - 10 ps
 4. Unrestrained equilibration - 10 ps
 5. Production simulations - 100 ps
+
+## For running/starting simulations:  
+Use files found in ./run folder in repo
