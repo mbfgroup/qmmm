@@ -121,3 +121,9 @@ $sel writepdb system.solv.ionized-heavy-res-2kcal.pdb
 #   and exit VMD
 quit
 ```
+## Typical workflow for QM/MM MD simulations:  
+1. Minimization - 10,000 steps
+2. Annealing - protocol
+3. Restrained equilibration - 10 ps
+4. Unrestrained equilibration - 10 ps
+5. Production simulations - 100 ps
