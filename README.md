@@ -56,6 +56,7 @@ close $out
 ```
 #   Set all beta and occupancy fields in the pdb to zero.
 #   The QM region(s) will be defined by setting the beta value to integer numbers correpsonding to each region.
+#   This is where you change QM region atoms depending on what region you want to set.
 #   Since we will create bonds that span the QM/MM region boundary, we will also use the occupancy column to mark BOTH atoms that participate in a QM-MM bond
 #   One atom will should have both beta 1.0 & occupancy 1.0
 #   For this system, we will also be using 
@@ -80,7 +81,7 @@ package require topotools
 topo guessatom element mass
 #   Write all atoms in a new PDB file for the entire system.
 set sel [atomselect top all]
-$sel writepdb cpc_a84_WT_qm.pdb
+$sel writepdb system_qm.pdb
 #   Now we do some checks to make sure all the charges look okay.
 set qm1 [atomselect top "beta 1.0"]
 puts "charge for qm1:"
@@ -103,4 +104,20 @@ measure sumweights $ions weight charge
 set all [atomselect top all]
 puts "charge for the full system"
 measure sumweights $all weight charge
+```
+## Generating position restraint files that are needed for the QM/MM equilibration stages  
+```
+#   Lastly, this will generate position restraints needed for the QM/MM equilibration stages
+#   Essentially, 2kcal restraints on all heavy and NOT CYC atoms in the solute.
+#   Assumes that the scaling factor in the *conf file is 2
+#   Now we use the two fields available in PDB files, "beta" and "occupancy"
+[atomselect top all] set beta 0.0
+[atomselect top all] set occupancy 0.0
+#   The "beta" field will be used to indicate which atoms will have their movements contrained during the equilibration.
+[atomselect top "protein and not hydrogen" ] set beta 1.0
+#   Now we write the constraints file:
+set sel [atomselect top all]
+$sel writepdb system.solv.ionized-heavy-res-2kcal.pdb
+#   and exit VMD
+quit
 ```
