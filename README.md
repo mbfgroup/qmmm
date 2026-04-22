@@ -124,7 +124,7 @@ quit
 ## For running the script:
 ```
 # on the cluster, just need vmd sourced
-vmd -dispdev text -e v-prepare_bulk.tcl
+vmd -dispdev text -e v-prep_qm_bulk.tcl
 ```
 ## Typical workflow for QM/MM MD simulations:  
 1. Minimization - 10,000 steps
