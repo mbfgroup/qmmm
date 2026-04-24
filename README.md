@@ -126,6 +126,19 @@ quit
 # on the cluster, just need vmd sourced
 vmd -dispdev text -e v-prep_qm_bulk.tcl
 ```
+## If you want to check your QM region definitions in PyMol:  
+```
+select qm1, (b = 1.0)
+select qm2, (b = 2.0)
+select qm3, (b = 3.0)
+select occ1, (q = 1.0)
+select occ2, (q = 2.0)
+select occ3, (q = 3.0)
+show sticks, qm*
+show sticks, occ*
+color magenta, qm*
+color orange, occ*
+```
 ## Typical workflow for QM/MM MD simulations:  
 1. Minimization - 10,000 steps
 2. Annealing - protocol
